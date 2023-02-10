@@ -8,14 +8,27 @@ public class Dealer {
 	}
 
 	public void hit(Deck deck) {
-	   // Draw a card from the deck
-	}
-
-	public int getScore() {
-	   // Get total score of hand
+		// Draw a card from the deck
+		hand.addCard(deck.draw());
 	}
 
 	public boolean shouldHit() {
 		// Decide if dealer should hit based on hand score
+	    return hand.getScore() < 17;
+	}
+
+	public Hand getHand() {
+	    // Get player's hand
+	    return hand;
+	}
+	
+	public int getScore() {
+	    // Get player's total score
+	    return hand.getScore();
+	}
+	
+	public String toString() {
+		Card card = hand.getCards().get(0);
+		return card.toString() + " XX Total: " + card.getValue() + " 2nd card hidden";
 	}
 }
