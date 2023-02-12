@@ -1,7 +1,7 @@
 package w23_cis350_termproject;
 
 public class Dealer {
-    private Hand hand;
+    	private Hand hand;
 
 	public Dealer() {
 	   this.hand = new Hand();
