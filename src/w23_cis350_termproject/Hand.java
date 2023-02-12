@@ -7,14 +7,14 @@ public class Hand {
 
 	public Hand() {
 	    // Initialize an empty hand
-	    hand = new ArrayList<Card>();
-	    score = 0;
+	    	hand = new ArrayList<Card>();
+	    	score = 0;
 	}
 
 	public void addCard(Card card) {
 	    // Add a card to the hand
 		hand.add(card);
-	    score += card.getValue();
+		score += card.getValue();
 	}
 
 	public int getScore() {
