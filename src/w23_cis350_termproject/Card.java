@@ -1,7 +1,7 @@
 package w23_cis350_termproject;
 
 public class Card {
-	private String rank;
+    private String rank;
 	private String suit;
 
 	public Card(String rank, String suit) {
