@@ -24,6 +24,10 @@ public class Blackjack {
 				System.out.println("Not enough chips, enter a lower amount.");
 				continue;
 			}
+			if (betAmount < 5) {
+				System.out.println("The minimum amount to bet is $5, enter a higher amount.");
+				continue;
+			}
 			
 			// Deal cards
 			dealer = new Dealer();
