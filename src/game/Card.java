@@ -10,6 +10,7 @@ package game;
 public class Card {
   private String rank;
   private String suit;
+  // ADD variables for x and y position of card
 
   public Card(String rank, String suit) {
     this.rank = rank;
@@ -66,6 +67,9 @@ public class Card {
     return value;
   }
 
+  // ADD Method to print card
+  
+  
   public String toString() {
     // Return string representation of card
     return this.rank + this.suit;

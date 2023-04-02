@@ -12,10 +12,17 @@ public class Blackjack {
   private Player player;
   private Dealer dealer;
 
+  // ADD JFrame, JButtons
+
+  // ADD or MODIFY Constructor
   public Blackjack(int playerChips) {
     player = new Player(playerChips);
   }
 
+  // ADD Method to create game GUI
+
+
+  // MODIFY to fit GUI
   /**
    * Main loop of the game. Will continue running until the Player is at 0 chips
    * or the Player chooses to quit.
