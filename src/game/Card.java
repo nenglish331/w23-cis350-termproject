@@ -1,77 +1,99 @@
 package game;
 
-/**
- * This class is for defining each individual card, storing its rank and suit,
- * and having the functionality to find the value of the card in the game of
- * Blackjack.
- *
- * @author nenglish331 
- */
-public class Card {
-  private String rank;
-  private String suit;
-  // ADD variables for x and y position of card
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.awt.Graphics2D;
 
-  public Card(String rank, String suit) {
-    this.rank = rank;
+public class Card {
+  private int suit; // suit of the card
+  private int rank; // rank of the card
+  private int value; // value of the card between 1 and 11
+  private int xPos; // x position of the card
+  private int yPos; // y position of the card
+
+  /**
+   * This method is a constructor that initializes the suit, rank, and value
+   * @param suit the suit of the card
+   * @param rank the rank of the card
+   * @param value the value of the card
+   */
+  public Card(int suit, int rank, int value) {
     this.suit = suit;
+    this.rank = rank;
+    this.value = value;
   }
 
   /**
-   * Gets the numerical value of the card within the game of Blackjack; 
-   * however, in our version we assume the value of A is 11 rather than 11 or 1.
+   * Getter for the card suit
    *
-   * @return numerical value of this card 
+   * @return the suit of the card
+   */
+  public int getSuit() {
+    return suit;
+  }
+
+  /**
+   * Getter for the card rank
+   *
+   * @return the rank of the card
+   */
+  public int getRank() {
+    return rank;
+  }
+
+  /**
+   * Getter for the card value
+   *
+   * @return the value of the card
    */
   public int getValue() {
-    // Get numerical value of card for scoring
-    int value;
-    switch (this.rank) {
-      case "2": 
-        value = 2;
-        break;
-      case "3": 
-        value = 3; 
-        break;
-      case "4": 
-        value = 4; 
-        break;
-      case "5": 
-        value = 5; 
-        break;
-      case "6": 
-        value = 6; 
-        break;
-      case "7": 
-        value = 7; 
-        break;
-      case "8": 
-        value = 8; 
-        break;
-      case "9": 
-        value = 9; 
-        break;
-      case "10":
-      case "J":
-      case "Q":
-      case "K": 
-        value = 10; 
-        break;
-      case "A": 
-        // Equals 1 or 11 based on current card total
-        value = 11; 
-        break;
-      default:
-        value = 0;
-    }
     return value;
   }
 
-  // ADD Method to print card
-  
-  
-  public String toString() {
-    // Return string representation of card
-    return this.rank + this.suit;
+  /**
+   * This method draws the card to the screen
+   * @param g2D brush to draw the images
+   * @param dealerTurn tells if it is the dealer's turn
+   * @param faceDown tells fi the card should be face down or face up
+   * @param cardNum the card to be drawn
+   * @throws IOException since we are reading images from a file
+   */
+  public void printCard(Graphics2D g2D, boolean dealerTurn, boolean faceDown, int cardNum) throws IOException {
+
+    BufferedImage deckImg = ImageIO.read(new File("cardSpriteSheet.png")); // read the image
+    int imgWidth = 950; // width of the image in pixels
+    int imgHeight = 392; // height of the image in pixels
+
+    BufferedImage[][] cardImg = new BufferedImage[4][13]; // create 2D array to store images
+    BufferedImage cardBack = ImageIO.read(new File("backsideOfACard.jpg")); // shows the back of the card
+
+    // assigns the relative card images to the array
+    for (int i = 0; i < 4; i++) {
+      for (int j = 0; j < 13; j++) {
+        cardImg[i][j] = deckImg.getSubimage(j*imgWidth/13, i*imgHeight/4, imgWidth/13, imgHeight/4);
+      }
+    }
+
+    // if it is the dealers turn the card prints at the top of the screen
+    if (dealerTurn) {
+      yPos = 100;
+    }
+    // if it is the players turn the card prints at the bottom of the screen
+    else {
+      yPos = 425;
+    }
+
+    xPos = 500 + 75*cardNum; // shift the x position to draw the cards next to each other
+
+    // if the cards are face down
+    if (faceDown) {
+      g2D.drawImage(cardBack, xPos, yPos, null ); // display the back of the card
+    }
+    // if the cards are face up
+    else {
+      g2D.drawImage(cardImg[suit][rank], xPos, yPos, null); // display the cards from the array
+    }
   }
 }
