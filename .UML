@@ -14,11 +14,9 @@ package "BlackJack"{
   usecase "Stand" as UC4 
   usecase "Bust" as UC5
   usecase "Start Game" as UC6
-  usecase "Split" as UC7
 }
 
 p --> UC1
-p --> UC7
 p --> UC2
 p --> UC3
 p --> UC4
