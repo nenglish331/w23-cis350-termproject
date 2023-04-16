@@ -1,0 +1,104 @@
+@startuml
+class Card {
+-yPos: int
+-xPos : int
+-value : int
+-rank : int
+-suit : int
++{method} Card(suit : int, rank : int, value : int)
++getSuit() : int
++getRank() : int
++getValue() : int
++printCard(g2D : Graphics2D, dealerTurn : boolean, faceDown : boolean, CardNum : int) : void
+}
+
+
+class GameComponent {
++{static} currBet : int
++{static} currBalance : int
++faceDown : boolean
+-pScore : int
+-dScore : int
+-pHand : ArrayList<Card>
+-dHand : ArrarList<Card>
++{method}GameComponent(dealerHand : ArrayList<Card>, playerHand : ArrayList<Card>)
++paintComponent(g : Graphics) : void
++refresh(currentBalance : int, playerScore : int, dealerScore : int, fDown : boolean) : void
+}
+
+class Deck {
+-deck : ArrayList<Card>
++{method}Deck()
++shuffleDeck() : void
++getCard(i : int) : Card
++removeCard(i : int) : void
+}
+
+class Blackjack{
+~exitButton : JButton
+~doubleButton : JButton
+~standButton : JButton
+~hitBUtton : JButton 
+~betButton : JButton
+~cardComponent : JButton
+~frame : JFrame
++endRound : boolean
++dealerWon : boolean
++faceDown : boolean
+~deck : Deck
+~playerHand : ArrayList<Card>
+~dealerHand : ArrayList<Card>
++{method}Blackjack(f : JFrame)
++formGame() : void
++startGame() : void
++checkHand(hand : ArrayList<Card>) : void
++addCard(hand : ArrayList<Card>) : void
++hasAce(hand : ArrayList<Card>) : boolean
++numAces(hand : ArrayList<Card>) : int
++highAceSum(hand : ArrayList<Card>) : int
++handSum(hand : ArrayList<Card>) : int
+}
+
+class Main {
++{static}gameCheckThread : Thread
++{static}gameRefreshThread : Thread
++{static}currentState : STATE
+-{static}newGame : boolean
++{static}game : Blackjack
++{static}currentBalance : int
++{static}dealerScore : int
++{static}playerScore : int
++{static}gameFrame : JFrame
++{static}menuFrame : JFrame
++{static}{method}main(args : String[]) : void
++{static}displayMenu() : void
+}
+
+class ActionComponent {
+-helpButton : JButton
+-exitButton : JButton
+-playButton : JButton
++{method}ActionComponent()
++paintComponent(g : Graphics) : void
++actionPerformed(e : ActionEvent) : void
+}
+
+class BlackjackTest {
++{method}testDeckInitialization() : void
++testShuffleDeck() : void
++testDrawCard() : void
++testCardValue() : void
++testHandInitialization() : void
++testAddCardToHand() : void
++testGetHandScore() : void
++testHandBusted() ; void
++testPlayerHit() : void
++testDealerHit() : void
++testDealerShouldHit() : void
+}
+
+Card --* GameComponent
+GameComponent --|> Blackjack
+
+Deck --* Blackjack
+@enduml
