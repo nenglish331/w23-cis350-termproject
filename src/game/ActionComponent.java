@@ -20,9 +20,9 @@ public class ActionComponent extends JComponent implements ActionListener{
      * This constructor adds action listeners to each of the buttons
      */
     public ActionComponent() {
-        playButton.addActionListener(this);
+        getPlayButton().addActionListener(this);
         exitButton.addActionListener(this);
-        helpButton.addActionListener(this);
+        getHelpButton().addActionListener(this);
     }
 
     /**
@@ -49,19 +49,19 @@ public class ActionComponent extends JComponent implements ActionListener{
         g2D.drawString("By: Sarah Wight, Nathan English, Xander Hall", 250, 580);
 
         // set the size and location of buttons
-        playButton.setBounds(300, 300, 150, 80);
+        getPlayButton().setBounds(300, 300, 150, 80);
         exitButton.setBounds(475, 300, 150, 80);
-        helpButton.setBounds(650, 300, 150, 80);
+        getHelpButton().setBounds(650, 300, 150, 80);
 
         // set the font type and size of buttons
-        playButton.setFont(new Font(Font.SERIF, Font.BOLD, 40));
+        getPlayButton().setFont(new Font(Font.SERIF, Font.BOLD, 40));
         exitButton.setFont(new Font(Font.SERIF, Font.BOLD, 40));
-        helpButton.setFont(new Font(Font.SERIF, Font.BOLD, 40));
+        getHelpButton().setFont(new Font(Font.SERIF, Font.BOLD, 40));
 
         // add the buttons to the component
-        super.add(playButton);
+        super.add(getPlayButton());
         super.add(exitButton);
-        super.add(helpButton);
+        super.add(getHelpButton());
     }
 
     /**
@@ -74,7 +74,7 @@ public class ActionComponent extends JComponent implements ActionListener{
 
 
         // if the play button was selected, start the game
-        if(selectedButton == playButton) {
+        if(selectedButton == getPlayButton()) {
             Main.currentState = Main.STATE.GAME; // jump from main menu to game state
             Main.menuFrame.dispose(); // dispose of the main menu frame
             Main.gameRefreshThread.start(); // start thread to refresh game
@@ -85,9 +85,17 @@ public class ActionComponent extends JComponent implements ActionListener{
             System.exit(0);
         }
         // else if help button was selected, display information and rules of blackjack
-        else if(selectedButton == helpButton) {
+        else if(selectedButton == getHelpButton()) {
             JOptionPane.showMessageDialog(this, "show rules here", "Rules",
                     JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public JButton getHelpButton() {
+      return helpButton;
+    }
+
+    public JButton getPlayButton() {
+      return playButton;
     }
 }

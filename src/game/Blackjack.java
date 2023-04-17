@@ -5,11 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Font;
 
-/**
- * This class creates and runs the blackjack game
- *
- * @author Sarah Wight, Nathan English, Xander Hall
- */
 public class Blackjack {
 
   ArrayList<Card> dealerHand; // dealer's hand
