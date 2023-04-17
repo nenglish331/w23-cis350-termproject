@@ -84,21 +84,41 @@ class ActionComponent {
 }
 
 class BlackjackTest {
-+{method}testDeckInitialization() : void
-+testShuffleDeck() : void
-+testDrawCard() : void
-+testCardValue() : void
-+testHandInitialization() : void
-+testAddCardToHand() : void
-+testGetHandScore() : void
-+testHandBusted() ; void
-+testPlayerHit() : void
-+testDealerHit() : void
-+testDealerShouldHit() : void
++{method}testConstructor() : void
++testPlayButtonAction() : void
++testFormGame() : void
++testHitButton() : void
++testStandButton() : void
++testDoubleButton() : void
++testCardGetters() : void
++testDeckShuffle() : void
++testDeckGetCard() : void
++testDealerHandInitial() : void
++testPlayerHandInitial() : void
++testBetButton() : void
 }
 
-Card --* GameComponent
-GameComponent --|> Blackjack
+class JComponent {
+}
 
-Deck --* Blackjack
+class ActionListener {
+}
+
+Deck ..> Card
+Deck --> Card
+Main ..> Blackjack
+Main --> ActionComponent
+Blackjack ..> GameComponent
+Blackjack ..> Deck
+Blackjack ..> Card
+Blackjack --> Card
+ActionComponent ..|> ActionListener
+ActionListener --|> JComponent
+GameComponent --|> JComponent
+BlackjackTest ..> Card
+BlackjackTest ..> Deck
+BlackjackTest ..> Main
+BlackjackTest ..> GameComponent
+BlackjackTest ..> Blackjack
+
 @enduml
